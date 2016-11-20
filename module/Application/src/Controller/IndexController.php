@@ -112,7 +112,7 @@ class IndexController extends GenericController {
     private function buscaDepoimentos() {
 
         $srv = $this->app()->getEntity('Application', 'Depoimentos');
-        $depoimentos = $srv->getAll();
+        $depoimentos = (array) $srv->getAll();
         return $depoimentos;
     }
 
