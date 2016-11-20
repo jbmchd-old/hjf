@@ -1,0 +1,41 @@
+
+<style>
+    
+    .login {
+        display: none;
+        margin-top:60px;
+        background: #272727;
+        height: 470px;
+    }
+    
+</style>
+
+<div class="paginas login col-lg-12" data-pagina="login">
+    
+    <div class="modal-body clearfix text-center">
+        <form method="POST" action="/acesso/login">
+            
+            <div class="col-lg-12 text-center">
+                <img src="/public/img/logo.png">
+            </div>
+            <div class="col-lg-12 text-center" style="margin-left: 36%;">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input id="user" type="text" class="form-control" style="width: 225px;" name="user" value="" placeholder="usuário">                                        
+                </div>
+                <div class="input-group" style="margin-top:10px;margin-bottom: 20px;">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input id="password" type="password" class="form-control" style="width: 225px;" name="password" placeholder="senha">
+                </div>  
+            </div>
+            <div class="wrapper">
+                <span class="group-btn">     
+                    <button class="btn btn-primary">Entrar <i class="fa fa-sign-in"></i></button>
+                </span>
+            </div>
+            
+        </form>
+        
+    </div>  
+    
+</div>

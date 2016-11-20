@@ -1,0 +1,162 @@
+<?php
+$this->plugin('basePath')->setBasePath('/public/');
+$depoimentos = $this->depoimentos??[];
+?>
+
+<script type="text/javascript" src="/public/js/jquery.form.js"></script>
+<script type="text/javascript" src="/public/js/admin/base.js"></script>
+<script type="text/javascript" src="/public/js/admin/admin.js"></script>
+
+<style>
+
+    .admin {
+        display: non;
+        margin-top:60px;
+        background: rgba(255, 255, 255, 0.64);
+        min-height: 750px;
+    }
+    
+    #tab_postar_fotos_menu  li a{
+        padding: 5px 10px
+    }
+
+</style>
+
+<div class="paginas admin col-lg-12" data-pagina="contato">
+
+    <div class="modal-body clearfix col-lg-12">
+        <div class="col-lg-12 text-center">
+            <h2>Admin</h2>
+            <a href="acesso/logout" class="btn btn-default">Sair</a>
+        </div>
+        
+        <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Fotos</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Depoimentos</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!--ABA POSTAR FOTOS-->
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <form method="post" name="multiple_upload_form" id="multiple_upload_form" enctype="multipart/form-data" action="/admin/postarFotos">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Categoria</label>
+                                <select class="form-control" name="categoria" id="admin_fotos_categoria">
+                                    <option value="0">Selecione...</option>
+                                    <option value="casamento">Casamento</option>
+                                    <option value="namoro">Namoro</option>
+                                    <option value="books">Books</option>
+                                    <option value="aniversarios">Aniversários</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Álbum</label>
+                                <select class="form-control" name="album_nome" id="admin_fotos_albuns"><option value="0">Novo album...</option></select>
+                            </div>
+                            <div class="form-group">
+                                <label>Título</label>
+                                <input type="text" class="form-control" name="titulo" id="admin_fotos_titulo" />
+                            </div>
+                            <div class="form-group">
+                                <label>Fotos</label>
+                                <input type="file" class="form-control" name="fotos[]" accept="image/*" multiple />
+                            </div>
+                            <div class="form-group text-center">
+                                <button class="btn btn-default">Postar</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <fieldset class="col-lg-12">
+                                <legend>Gerenciar álbuns</legend>
+                                <table class="table table-bordered table-condensed" id="admin_fotos_table_fotos">
+                                    <thead>
+                                        <tr>
+                                            <th>Arquivo</th>
+                                            <th class="col-lg-4">Foto</th>
+                                            <th class="col-lg-1"></i> Excluir</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- ABA POSTAR DEPOIMENTOS -->
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    <form method="post" name="" id="admin_dep_form" enctype="multipart/form-data" action="/admin/postar-depoimento">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Depoimentos</label>
+                                <select class="form-control" id="admin_dep_depoimentos" name="id">
+                                    <option value="0">Novo...</option>
+                                    <?php foreach ($depoimentos as $depoimento) : ?>
+                                    <option value="<?=$depoimento['id']?>"><?=$depoimento['titulo']?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Autor</label>
+                                <input type="text" class="form-control" id="admin_dep_autor" name="autor" />
+                            </div>
+                            <div class="form-group">
+                                <label>Título</label>
+                                <input type="text" class="form-control" id="admin_dep_titulo" name="titulo" />
+                            </div>
+                            <div class="form-group">
+                                <label>Depoimento</label>
+                                <textarea class="form-control" id="admin_dep_depoimento" name="depoimento"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Foto</label>
+                                <input type="file" class="form-control" id="admin_dep_foto" name="foto" accept="image/*" />
+                            </div>
+                            <div class="form-group text-center">
+                                <button class="btn btn-default">Postar</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <fieldset class="col-lg-12">
+                                <legend>Gerenciar depoimentos</legend>
+                                <table class="table table-bordered table-condensed" id="admin_dep_table">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-lg-3">Nome</th>
+                                            <th class="col-lg-6">Título</th>
+                                            <th class="col-lg-2">Foto</th>
+                                            <th class="col-lg-1"></i> Excluir</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($depoimentos as $depoimento) :?>
+                                        <tr data-id="<?= $depoimento['id'] ?>">
+                                            <td><?= $depoimento['autor'] ?></td>
+                                            <td><?= $depoimento['titulo'] ?></td>
+                                            <td><img style="max-width: 150px" src="data/depoimentos/fotos/<?= $depoimento['imagem'] ?>" /></td>
+                                            <td class="text-center"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-times-circle"></i></button></td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+</script>

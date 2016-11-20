@@ -1,7 +1,9 @@
 .vagrant/
-vendor/
+vendor/*
 config/development.config.php
 data/cache/*
 !data/cache/.gitkeep
 phpunit.xml
 ubuntu-xenial-16.04-cloudimg-console.log
+
+nbproject

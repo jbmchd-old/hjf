@@ -1,0 +1,57 @@
+<?php 
+    $this->plugin('basePath')->setBasePath('/public/');
+    $depoimentos = $this->depoimentos;
+?>
+
+<style>
+    
+    .depoimento_page {
+        display: none;
+        margin-top: 60px;
+        background: rgba(255, 255, 255, 0.8);
+        min-height: 470px;
+    }
+    
+    .img {
+        max-width: 20%;
+    }
+    
+    .titulo {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    
+    .autor {
+        text-align: right;
+        font-size: 15px;
+    }
+    
+    .depoimento {
+        font-size: 17px;
+        margin-top: 3%;
+        text-align: justify;
+    }
+    
+</style>
+
+<div class="paginas depoimento_page col-lg-12" data-pagina="depoimento">
+    
+    <div class="modal-body clearfix">
+        <div class="col-lg-12 text-center">
+            <h2>Depoimentos</h2>
+        </div>
+        <?php foreach ($depoimentos as $depoimento) : ?>
+            <div class="col-lg-12 text-left" style="margin-top:30px;">
+                <div class="col-lg-4 text-center"> <img style="max-width: 250px;" src="<?= "data/depoimentos/fotos/{$depoimento['imagem']}" ?>"> </div>
+                
+                <div class="titulo"><?= $depoimento['titulo'] ?></div>
+                
+                <div class="col-lg-7 depoimento" >
+                    <?= $depoimento['depoimento'] ?>
+                    <div class="autor"><i><?= $depoimento['autor'] ?></i></div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    
+</div>

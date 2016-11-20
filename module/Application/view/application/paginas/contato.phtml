@@ -1,0 +1,312 @@
+<?php
+    $this->plugin('basePath')->setBasePath('/public/');
+?>
+<style>
+    
+    .orcamento {
+        display: none;
+        margin-top:60px;
+        background: white;
+        min-height: 750px;
+    }
+    
+    .contato-form-control {
+        width: 300px;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+    .contato-espaco {
+        margin-top: 15px;
+    }
+    
+    .textarea-contato {
+        width: 400px;
+        resize: none;
+        height: 100px;
+        padding: 6px 12px;
+        font-size: 14px;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+    .button-contato-contato {
+        margin-top: 25px;
+    }
+    
+</style>
+
+<div class="paginas orcamento col-lg-12" data-pagina="contato">
+    
+    <div class="modal-body clearfix col-lg-12">
+        <div class="col-lg-12 text-center">
+            <h2><br>Contato</h2>
+        </div>
+        <div class="col-lg-12" style="margin-top:30px;">
+            <div class="col-lg-9">
+                <div>
+                    <span class="text-center">
+                        <h4>Seus dados<br</h4>
+                    </span>
+                </div>
+                <div class="col-lg-12 contato-espaco" id="div-contato-nome" >
+                    <div class="col-lg-5 text-right">
+                        <label>Nome *</label>
+                    </div>
+                    <div class="col-lg-7">
+                        <input type="text" class="form-control" id="contato-nome" name="contato-nome" value="" />
+                    </div>
+                </div>
+                <div class="col-lg-12 contato-espaco" id="div-contato-fone">
+                    <div class="col-lg-5 text-right">
+                        <label>Fone *</label>
+                    </div>
+                    <div class="col-lg-7">
+                        <input type="text" class="form-control" id="contato-fone" name="contato-fone" value="" />
+                    </div>
+                </div>
+                <div class="col-lg-12 contato-espaco" id="div-contato-email">
+                    <div class='col-lg-5 text-right'>
+                        <label>Email *</label>
+                    </div>
+                    <div class="col-lg-7">
+                        <input type="text" class="form-control" id="contato-email" name="contato-email" value="" />
+                    </div>
+                </div>
+                <div class="col-lg-12 contato-espaco" id="div-contato-cidade">
+                    <div class='col-lg-5 text-right'>
+                        <label>Cidade *</label>
+                    </div>
+                    <div class="col-lg-7">
+                        <input type="text" class="form-control" id="contato-cidade" name="contato-cidade" value="" />
+                    </div>
+                </div>
+                <div class="col-lg-12 contato-espaco" id="div-contato-estado">
+                    <div class='col-lg-5 text-right'>
+                        <label>Estado *</label>
+                    </div>
+                    <div class="col-lg-7">
+                        <select name="contato-estado" id="contato-estado" class="form-control"> 
+                            <option value="">Selecione o Estado</option> 
+                            <option value="ac">Acre</option> 
+                            <option value="al">Alagoas</option> 
+                            <option value="am">Amazonas</option> 
+                            <option value="ap">Amapá</option> 
+                            <option value="ba">Bahia</option> 
+                            <option value="ce">Ceará</option> 
+                            <option value="df">Distrito Federal</option> 
+                            <option value="es">Espírito Santo</option> 
+                            <option value="go">Goiás</option> 
+                            <option value="ma">Maranhão</option> 
+                            <option value="mt">Mato Grosso</option> 
+                            <option value="ms">Mato Grosso do Sul</option> 
+                            <option value="mg">Minas Gerais</option> 
+                            <option value="pa">Pará</option> 
+                            <option value="pb">Paraíba</option> 
+                            <option value="pr">Paraná</option> 
+                            <option value="pe">Pernambuco</option> 
+                            <option value="pi">Piauí</option> 
+                            <option value="rj">Rio de Janeiro</option> 
+                            <option value="rn">Rio Grande do Norte</option> 
+                            <option value="ro">Rondônia</option> 
+                            <option value="rs">Rio Grande do Sul</option> 
+                            <option value="rr">Roraima</option> 
+                            <option value="sc">Santa Catarina</option> 
+                            <option value="se">Sergipe</option> 
+                            <option value="sp">São Paulo</option> 
+                            <option value="to">Tocantins</option> 
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-12 contato-espaco text-center">
+                    <label>
+                        <input type="checkbox" id="contato-solicitar-orcamento" name="contato-solicitar-orcamento" />&nbsp;Solicitar orçamento
+                    </label>
+                </div>
+                <div class="col-lg-12 contato-espaco" style="display:none;" id="div-contato-orcamento">
+                    <div class="col-lg-5 text-right">
+                        <label> Solicitar orçamento de * </label>
+                    </div>
+                    <div class='col-lg-7'>
+                        <select name="contato-orcamento" id="contato-orcamento" class="form-control">
+                            <option value="">Selecione o Orçamento</option>
+                            <option value="foto-namoro">Foto-Namoro</option>
+                            <option value="casamento">Casamento</option>
+                            <option value="15 anos">15 anos</option>
+                            <option value="books">Books</option>
+                            <option value="aniversário/ensaio infantil">Aniversário/Ensaio Infantil</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-12 contato-espaco" id="div-contato-mensagem">
+                    <div class="col-lg-5 text-right">
+                        <label> Mensagem </label>
+                    </div>
+                    <div class='col-lg-7'>
+                        <textarea class="textarea-contato" class='form-control' id="contato-mensagem" ></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-12 contato-espaco" id="div-contato-conheceu">
+                    <div class="col-lg-5 text-right">
+                        <label> Conheceu nosso trabalho </label>
+                    </div>
+                    <div class='col-lg-7'>
+                        <select name="contato-conheceu" id="contato-conheceu" class="form-control">
+                            <option value="">Conheceu nosso trabalho</option>
+                            <option value="internet">Internet</option>
+                            <option value="indicacao">Indicação</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-12 text-center contato-espaco" id="div-mensagem-status" style="display: none;">
+                    <span id="mensagem-status" style="color: red;font-weight:bold;"></span>
+                </div>
+                <div class="col-lg-12 button-contato-contato text-center">
+                    <button type="button" class="btn btn-primary" id="contato-cancelar">Cancelar</button>
+                    <button style="margin-left: 15px;" type="button" class="btn btn-primary" id="contato-enviar">Enviar</button>
+                </div>
+            </div>
+            <div class="col-lg-3" style="margin-top: 10%;">
+                <span>Para mais informações<br></span>
+                <span>
+                    HJ Fotografia<br>
+                    hjfotografia@hotmail.com<br>
+                    33 9 8418 - 8190
+                </span>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<script>
+    $('#contato-solicitar-orcamento').click(function() {
+        var status = $('#contato-solicitar-orcamento').is(':checked');
+        
+        if (status) {
+            $('#div-contato-orcamento').show();
+        } else {
+            $('#div-contato-orcamento').hide();
+        }
+        
+    });
+    
+    $('#contato-enviar').click( function () {
+        
+        $('#div-mensagem-status').hide();
+        
+        var nome = $('#contato-nome').val();
+        var fone = $('#contato-fone').val();
+        var email = $('#contato-email').val();
+        var cidade = $('#contato-cidade').val();
+        var estado = $('#contato-estado :selected').val();
+        var mensagem = $('#contato-mensagem').val();
+        var orcamento = $('#contato-orcamento').val();
+        var conheceu = $('#contato-conheceu :selected').val();
+        
+        var retorno = verificaCampos();
+        
+        if (retorno) {
+            $.ajax({
+               url: 'application/Contato/enviaMensagem',
+               method: 'POST',
+               data: {
+                   nome: nome,
+                   fone: fone,
+                   email: email,
+                   cidade: cidade,
+                   estado: estado,
+                   mensagem: mensagem,
+                   orcamento: orcamento,
+                   conheceu: conheceu,
+               }
+            }).done(function (result) {
+                
+            });
+        }
+        
+    });
+    
+    function verificaCampos() {
+        var nome = $('#contato-nome').val();
+        var fone = $('#contato-fone').val();
+        var email = $('#contato-email').val();
+        var cidade = $('#contato-cidade').val();
+        var estado = $('#contato-estado :selected').val();
+        var mensagem = $('#contato-mensagem').val();
+        var status_orcamento = $('#contato-solicitar-orcamento').is(':checked');
+        var orcamento = $('#contato-orcamento').val();
+        var conheceu = $('#contato-conheceu :selected').val();
+        
+        if (nome.length == 0) {
+            $('#contato-nome').focus();
+            $('#div-mensagem-status').show();
+            $('#mensagem-status').text("Prezado, informe seu Nome!");
+            return false;
+        } else if (fone.length == 0) {
+            $('#contato-fone').focus();
+            $('#div-mensagem-status').show();
+            $('#mensagem-status').text("Prezado, informe seu Telefone!");
+            return false;
+        } else if (email.length == 0) {
+            $('#contato-email').focus();
+            $('#div-mensagem-status').show();
+            $('#mensagem-status').text("Prezado, informe seu Email!");
+            return false;
+        } else if (cidade.length == 0) {
+            $('#contato-cidade').focus();
+            $('#div-mensagem-status').show();
+            $('#mensagem-status').text("Prezado, informe sua Cidade!");
+            return false;
+        } else if(status_orcamento && orcamento.length == 0) {
+            $('#div-mensagem-status').show();
+            $('#mensagem-status').text("Prezado, selecione um tipo de orçamento!");
+            return false;
+        } else if (estado.length == 0) {
+            $('#div-mensagem-status').show();
+            $('#mensagem-status').text("Prezado, informe seu Estado!");
+            return false;
+        }
+        
+        return true;
+        
+    }
+    
+    $('#contato-fone').mask('(00) 0000-00009');
+    
+    $('#contato-fone').blur(function(event) {
+       if($(this).val().length == 15){ // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
+          $('#contato-fone').mask('(00) 00000-0009');
+       } else {
+          $('#contato-fone').mask('(00) 0000-00009');
+       }
+    });
+    
+    $('#contato-cancelar').click(function() {
+        
+        $('#contato-nome').val("");
+        $('#contato-fone').val("");
+        $('#contato-email').val("");
+        $('#contato-cidade').val("");
+        $('#contato-estado :selected').val();
+        $('#contato-mensagem').val("");
+        $('#contato-solicitar-orcamento').prop('checked',false);
+        $('#div-contato-orcamento').hide();
+        $('#contato-orcamento option[value=""]').prop('selected',true);
+        $('#contato-conheceu option[value=""]').prop('selected',true);
+        $('#contato-estado option[value=""]').prop('selected',true);
+        
+    });
+    
+</script>

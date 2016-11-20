@@ -1,0 +1,72 @@
+<?php 
+    echo $this->doctype(); 
+    $this->plugin('basePath')->setBasePath('/public/');
+?>
+
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <?= $this->headTitle('HJ Fotografia')->setSeparator(' - ')->setAutoEscape(false); ?>
+
+        <?= $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge');
+        ?>
+
+        <!-- Le styles -->
+        <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/logo_reduzida.png'])
+            ->prependStylesheet($this->basePath('css/style.css'))
+            ->prependStylesheet($this->basePath('css/fotografia.css'))
+            ->prependStylesheet($this->basePath('bootstrap-3.3.7/css/bootstrap.min.css'))
+            ->prependStylesheet($this->basePath('dist/css/lightbox.min.css'));
+        ?>
+
+        <!-- Scripts -->
+        <?= $this->headScript()
+//            ->prependFile($this->basePath('js/global.js'))
+            ->prependFile($this->basePath('js/plugin.form.js'))
+            ->prependFile($this->basePath('js/global.commons.plugin.js'))
+            ->prependFile($this->basePath('js/global.components.plugin.js'))
+            ->prependFile($this->basePath('bootstrap-3.3.7/js/bootstrap.min.js'))
+            ->prependFile($this->basePath('js/auto-numeric-1.9/autoNumeric-min.js'))
+            ->prependFile($this->basePath('js/watch.js'))
+            ->prependFile($this->basePath('js/jquery.mask.min.js'))
+            ->prependFile($this->basePath('js/jquery-3.1.1.min.js'))
+                
+            ->prependFile($this->basePath('dist/js/lightbox-plus-jquery.min.js'));
+        ?>
+    </head>
+    <style>
+    
+    body.page-inicio {
+        /*background: transparent url("../img/background/hero.gif") no-repeat fixed center bottom;*/
+        background: transparent url("<?=$this->basePath('img/background.png')?>") no-repeat fixed center bottom;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    .page-portifolio { 
+        background: transparent url("<?=$this->basePath('img/background-portifolio.png')?>") no-repeat fixed center bottom; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+    }
+    .navbar {
+        background-color: transparent;
+        background: transparent;
+        border-color: transparent;
+    }
+   .font {
+        font-family: Arial;
+        font-size: 18px;
+    }
+    </style>
+    <body class="page-inicio" id="pagina-index">
+        <div class="container">
+            <?php echo $this->content; ?>
+        </div> <!-- /container -->
+        <?php echo $this->inlineScript() ?>
+    </body>
+</html>

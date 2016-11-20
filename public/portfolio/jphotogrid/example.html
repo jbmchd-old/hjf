@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>jPhotoGrid Plugin</title>
+		<link href="style.css" rel="stylesheet" type="text/css" media="all" /> 
+		<link href="jphotogrid.css" rel="stylesheet" type="text/css" media="screen" /> 
+		<!--[if IE]>
+			<link href="jphotogrid.ie.css" rel="stylesheet" type="text/css" media="screen" />
+		<![endif]--> 
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script src="jphotogrid.js"></script>
+		<script src="jflickrfeed.js"></script>
+		<script src="setup.js"></script>
+	</head>
+	<body>
+		<div id="container">
+			<h1>jPhotoGrid Plugin</h1>
+			<p>This plugin makes it easy to put together a cool image grid from a list of photos.  The markup should look like this:</p>
+			<pre>&lt;ul&gt;
+	&lt;li&gt;
+		&lt;img src="source.jpg" alt="" /&gt;
+		&lt;p&gt;Caption Here&lt;/p&gt;
+	&lt;/li&gt;
+	...
+&lt;ul&gt;</pre>
+			<p>The plugin uses the browser's image scaling to do the zoom.  So the image should be appropriately sized to act as both a thumbnail and a zoomed image.</p>
+			<p>The css for the below slideshow looks like this:</p>
+			<pre>#pg { position: relative; height: 585px; background: #000; }
+#pg li { position: relative; list-style: none; width: 175px; height: 117px; overflow: hidden; float: left; z-index: 2; opacity: .3; }
+#pg li.active { opacity: 1; }
+#pg li.selected { opacity: 1; z-index: 99; -moz-box-shadow: 0px 0px 10px #fff; -webkit-box-shadow: 0px 0px 10px #fff; }
+#pg li img { display: block; width: 100%; }
+#pg li p { color: white; margin: 10px 0; font-size: 12px; }</pre>
+			<p>Finally, the last step is setting up the javascript.  The key think here is passing in two CSS objects.  This is what tells $.animate how to open and close the popup:</p>
+			<pre>$('#pg').jphotogrid({
+	baseCSS: {
+		width: '175px',
+		height: '117px',
+		padding: '0px'
+	},
+	selectedCSS: {
+		top: '50px',
+		left: '100px',
+		width: '500px',
+		height: '360px',
+		padding: '10px'
+	}
+	});</pre>
+			
+			<h3>The Result</h3>
+			
+			<ul id="pg">
+				<li>
+					<img src="http://farm4.static.flickr.com/3647/3435384001_9ed9864bb4.jpg" alt="DSC_0660">
+					<p>DSC_0660</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3311/3436188742_caaa28c689.jpg" alt="DSC_0698">
+					<p>DSC_0698</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3371/3436188466_418a0d8a06.jpg" alt="DSC_0668">
+					<p>DSC_0668</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3397/3436188128_5e503cefcd.jpg" alt="DSC_0704">
+					<p>DSC_0704</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3300/3436187796_4d228a5bde.jpg" alt="DSC_0699">
+					<p>DSC_0699</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3386/3435382439_68b5e3742b.jpg" alt="DSC_0602">
+					<p>DSC_0602</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3657/3436187288_e84058f54b.jpg" alt="DSC_0603">
+					<p>DSC_0603</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3405/3436187010_c731dea9a3.jpg" alt="DSC_0604">
+					<p>DSC_0604</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3403/3435381659_ea615ecf14.jpg" alt="DSC_0607">
+					<p>DSC_0607</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3570/3436186474_4e35487600.jpg" alt="DSC_0619">
+					<p>DSC_0619</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3339/3434101571_30f6f2bffd.jpg" alt="DSC_0620">
+					<p>DSC_0620</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3134/3434099407_32da82e761.jpg" alt="DSC_0590">
+					<p>DSC_0590</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3538/3434096369_e2de95b252.jpg" alt="DSC_0562">
+					<p>DSC_0562</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3348/3434093487_f5a5b8fdb3.jpg" alt="DSC_0544">
+					<p>DSC_0544</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3652/3434091639_dccdc6342a.jpg" alt="DSC_0541">
+					<p>DSC_0541</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3537/3434089449_cde6162fa7.jpg" alt="DSC_0532">
+					<p>DSC_0532</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3385/3434895530_4bf2857b49.jpg" alt="DSC_0531">
+					<p>DSC_0531</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3411/3434069355_7df0d65490.jpg" alt="Dog dogs">
+					<p>dogs</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3349/3434870890_3b51171084.jpg" alt="DSC_0693">
+					<p>DSC_0693</p>
+				</li>
+				<li>
+					<img src="http://farm4.static.flickr.com/3544/3434061033_ba1be12cce.jpg" alt="DSC_0691">
+					<p>DSC_0691</p>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

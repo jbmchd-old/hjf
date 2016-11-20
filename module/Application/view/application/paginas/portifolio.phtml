@@ -1,0 +1,163 @@
+<?php
+$portifolio = $this->portifolio;
+$this->plugin('basePath')->setBasePath('/public/');
+
+$menu_portfolio = $this->menu_portfolio;
+?>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+<link href="/public/portfolio/menu-dinamico/styles.css" media="all" rel="stylesheet" type="text/css" />
+<link href="/public/portfolio/jphotogrid/jphotogrid.css" media="screen" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="/public/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/public/portfolio/jphotogrid/jphotogrid.js"></script>
+<script type="text/javascript" src="/public/portfolio/jphotogrid/jphotogrid.setup.js"></script>
+
+<script type="text/javascript" src="/public/portfolio/menu-dinamico/js/functions.js"></script>
+
+<style>
+
+    .portifolio {
+        display: none;
+        margin-top:40px;
+        background: #1b1b1b;
+        /*background: #f7f7f7;*/
+        min-height: 600px;
+    }
+    .div-opcao-portifolio {
+        vertical-align: middle;
+        color: white;
+        text-align: center;
+    }
+
+    .font-port {
+        font-family: Arial;
+        font-size: 20px;
+        /*text-transform: uppercase;*/
+        color: #9d9d9d;
+        margin-right: 70px;
+    }
+    .font-port:hover {
+        color: white;
+        text-decoration: none;
+    }
+    
+</style>
+
+
+<div class="portifolio col-lg-12 paginas" data-pagina="portifolio">
+
+    <div class="modal-body clearfix">
+
+        <div class="div-opcao-portifolio clearfix"style="margin-bottom: 0px;">
+            <div id="fdw">
+                <!--nav-->
+                <nav>
+                    <ul>
+                        <?php foreach ($menu_portfolio as $categoria => $albuns) : ?>
+                            <li>
+                                <a href="#"><?= $categoria ?></span></a>
+                                <?php if (sizeof($albuns) > 0) : ?>
+                                    <ul style="display: none;" class="sub_menu">
+                                        <?php foreach ($albuns as $album => $files) : ?>
+                                            <li><a data-cat="<?= $categoria ?>" class="subCurrent" href="#"><?= $album ?></a></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php endif; ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </nav>
+            </div><!-- end fdw -->
+        </div>
+        <div id="div_pg" class="col-lg-12">
+            
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+    $(function () {
+
+        function buscaFotos(categoria, album, fotos_nome) {
+            if (fotos_nome.length < 1) {
+                return false;
+            }
+
+            var div_fotos = $('#div_pg');
+
+            var pg_id = 'pg'+'_'+categoria+'_'+album;
+            var fotos = '<ul id="'+pg_id+'">';
+            $(fotos_nome).each(function (i, foto_nome) {
+                fotos += '<li><img src="data/albuns/'+categoria+'/'+album+'/'+foto_nome+'" /></li>';
+            });
+            fotos += '</ul>';
+            
+            div_fotos.find('#'+pg_id).remove();
+            div_fotos.html(fotos).show();
+            
+            $('#'+pg_id).jphotogrid({
+                id:pg_id,
+                baseCSS: {
+                    width: '175px',
+                    height: '117px',
+                    padding: '5px'
+                },
+                selectedCSS: {
+                    top: '40px',
+                    left: '150px',
+                    width: '750px',
+                    height: '421px',
+                    padding: '0px'
+                }
+            });
+            
+        }
+
+        $('.subCurrent').click(function () {
+            var categoria = $(this).attr('data-cat');
+            var album = $(this).html();
+            var pg_id = 'pg'+'_'+categoria+'_'+album;
+            
+            if($('#'+pg_id+' *').length > 0){return false;}
+            
+            $.ajax({
+                url: '/application/buscaItensMenuPortfolio',
+                dataType: 'json',
+                type: 'POST',
+                data: {
+                    categoria: categoria,
+                    album: album,
+                },
+                success: function (result) {
+                    buscaFotos(categoria, album, result.fotos);          
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+
+        $('.font-port').click(function () {
+
+            $('.font-port').css('color', '#9d9d9d');
+
+            $(this).css('color', 'white');
+            $(this).css('text-decoration', 'none');
+        });
+
+        $('#opcao-portifolio a').click(function () { //ao clicar no link de menu
+//            var tipo = $(this).attr('data-tipo-fotografia');
+
+            $('.portifolio-fotos').hide(); //oculta as que estiver sendo exibido
+            $('#pg').show();
+
+
+        });
+
+    });
+
+</script>
