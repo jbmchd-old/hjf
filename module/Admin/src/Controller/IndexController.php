@@ -36,13 +36,13 @@ class IndexController extends GenericController
         $titulo = implode('_', explode(' ', strtolower(trim($dados['titulo']))));
         
         if($dados['album_nome']!='0'){
-            rename("data\\albuns\\$categoria\\$album_nome_atual", "data\\albuns\\$categoria\\$titulo");
+            rename("data/albuns/$categoria/$album_nome_atual", "data/albuns/$categoria/$titulo");
             $titulo = $album_nome_atual;
         }
         
         $uploads = new UploadService(new Local('data/albuns', '/files'));
         $uploads->substituir_se_existir = false;        
-        $uploads->projeto_subpasta = "$categoria\\$titulo";
+        $uploads->projeto_subpasta = "$categoria/$titulo";
         
         $files = $request->getFiles()->toArray();
         $id = [];
@@ -52,7 +52,11 @@ class IndexController extends GenericController
             $cada['name'] = implode('_', explode(' ', strtolower(trim(strtr($cada['name'], "áàãâéêíóôõúüçÁÀÃÂÉÊÍÓÔÕÚÜÇ", "aaaaeeiooouucAAAAEEIOOOUUC")))));
             $id[] = $uploads->upload($cada);
         }
-        
+//        echo '<pre>';
+//        print_r($id);
+//        print_r($dados);
+//        print_r($files);
+//        die();
         $this->redirect()->toUrl('/admin#fotos');
     }
     
@@ -63,7 +67,7 @@ class IndexController extends GenericController
         
         $categoria = $dados['categoria'] = implode('_', explode(' ', strtolower(trim($dados['categoria']))));
         $albuns = [];
-        $path = getcwd()."\\data\\albuns\\$categoria";         
+        $path = getcwd()."/data/albuns/$categoria";         
         if(is_dir($path)){
             $albuns = scandir($path);
             unset($albuns[0]);
@@ -81,7 +85,7 @@ class IndexController extends GenericController
         $categoria = implode('_', explode(' ', strtolower(trim($dados['categoria']))));
         $album = implode('_', explode(' ', strtolower(trim($dados['titulo']))));
         
-        $path = getcwd()."\\data\\albuns\\$categoria\\$album";         
+        $path = getcwd()."/data/albuns/$categoria/$album";         
         
         $files = preg_grep('~\.(jpeg|jpg|png)$~', scandir($path));
         
@@ -102,7 +106,7 @@ class IndexController extends GenericController
         $album = implode('_', explode(' ', strtolower(trim($dados['titulo']))));
         $file = $dados['file'];
         
-        $path = "$categoria\\$album\\$file";         
+        $path = "$categoria/$album/$file";         
         
         $result = true;
         try {

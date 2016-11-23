@@ -60,7 +60,7 @@ $menu_portfolio = $this->menu_portfolio;
                                 <?php if (sizeof($albuns) > 0) : ?>
                                     <ul style="display: none;" class="sub_menu">
                                         <?php foreach ($albuns as $album => $files) : ?>
-                                            <li><a data-cat="<?= $categoria ?>" class="subCurrent" href="#"><?= $album ?></a></li>
+                                            <li><a data-cat="<?= $categoria ?>" class="subCurrent" href="#" data-album="<?=$album?>" ><?= ucwords(implode(' ', explode('_', $album))); ?></a></li>
                                         <?php endforeach; ?>
                                     </ul>
                                 <?php endif; ?>
@@ -119,7 +119,7 @@ $menu_portfolio = $this->menu_portfolio;
 
         $('.subCurrent').click(function () {
             var categoria = $(this).attr('data-cat');
-            var album = $(this).html();
+            var album = $(this).attr('data-album');
             var pg_id = 'pg'+'_'+categoria+'_'+album;
             
             if($('#'+pg_id+' *').length > 0){return false;}

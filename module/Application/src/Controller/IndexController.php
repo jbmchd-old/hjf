@@ -50,7 +50,7 @@ class IndexController extends GenericController {
             'aniversarios' => [],
         );
         
-        foreach ($menu as $key => $cada) {
+        foreach ($menu as $key => $cada) {    
             $menu[$key] = $this->getDirectory("data/albuns/$key");
             if( ! $menu[$key]){
                 $menu[$key] = [];
